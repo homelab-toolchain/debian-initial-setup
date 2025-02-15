@@ -1,7 +1,7 @@
 # General
 
 1. Update and upgrade the system
-2. (Optional) Set timezone
+2. (Optional) Set timezone. Fallback: `Europe/Amsterdam`
 3. Install first packages (i.e. curl, net-tools, ca-certificates, git, nano)
 4. (Optional) Install Docker 
 5. (Optional) Disable IPv6
@@ -20,8 +20,8 @@ If you want to execute all non-optional steps described above, you can run the f
 curl -sSL https://github.com/homelab-toolchain/debian-initial-setup/raw/refs/heads/main/debian-initial-setup.sh | bash
 ```
 
-If you want to execute optional steps too, you can run put the input parameters. 
+If you want to execute optional steps too, you can use the input arguments. 
 The following example activates all optional steps (simply remove those that are not required):
 ```
-curl -sSL https://github.com/homelab-toolchain/debian-initial-setup/raw/refs/heads/main/debian-initial-setup.sh | bash
+curl -sSL https://github.com/homelab-toolchain/debian-initial-setup/raw/refs/heads/main/debian-initial-setup.sh | setTimeZone="Europe/Amsterdam" installDocker disableIPv6 bash
 ```
