@@ -1,25 +1,31 @@
 #!/bin/bash
 
-# Function to check if a specific step argument is provided and optionally extract a value
+if [ $# -eq 0 ]; then
+    OPTIONAL_STEPS=0
+else
+    OPTIONAL_STEPS=1
+fi
+
 get_value() {
     local step=$1
+    shift
     for arg in "$@"; do
         if [[ "$arg" == $step=* ]]; then
-            echo "${arg#*=}"  # Extract value after '='
+            echo "${arg#*=}"
             return 0
         elif [[ "$arg" == "$step" ]]; then
-            echo ""  # No value provided
+            echo ""
             return 0
         fi
     done
     return 1
 }
 
-# Function to check if a step exists
 should_run() {
     local step=$1
-    if [ $# -eq 0 ]; then
-        return 1  # no parameter -> no execution required
+    shift
+    if [ "$OPTIONAL_STEPS" -eq 0 ]; then
+        return 1
     fi
     for arg in "$@"; do
         if [[ "$arg" == $step* ]]; then
@@ -44,7 +50,8 @@ if should_run "setTimeZone" "$@"; then
     echo "Applying new timezone..."
     {
         timezone=$(get_value "setTimeZone" "$@")
-        [ -z "$timezone" ] && timezone="Europe/Amsterdam"
+        # Fallback: Etc/UTC
+        [ -z "$timezone" ] && timezone="Etc/UTC"
         timedatectl set-timezone "$timezone"
     } &> /dev/null
 else
