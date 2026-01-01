@@ -4,7 +4,7 @@ Bootstrap a fresh Debian host with baseline packages and optional extras (timezo
 
 ## What this script does
 1. Update and upgrade apt packages.
-2. Install base tools: curl, net-tools, ca-certificates, git, nano.
+2. Install base tools: curl, net-tools, ca-certificates, git, nano, rsync.
 3. Optionally set the system timezone (defaults to Etc/UTC when the flag is provided without a value).
 4. Optionally install Docker from the official repository after removing conflicting packages.
 5. Optionally disable IPv6 via sysctl.

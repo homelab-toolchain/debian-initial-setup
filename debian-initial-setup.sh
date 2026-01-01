@@ -63,7 +63,7 @@ fi
 '
 echo "Installing first packages..."
 {
-    apt-get install net-tools ca-certificates git nano curl -y
+    apt-get install -y net-tools ca-certificates git nano curl rsync
 } &> /dev/null
 
 : '
