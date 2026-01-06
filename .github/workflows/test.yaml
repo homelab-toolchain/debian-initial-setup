@@ -1,0 +1,17 @@
+name: Test Script
+
+on:
+  workflow_dispatch:
+
+permissions:
+  actions: write
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Set Git Identity
+        run: |
+          wget -qO- https://github.com/homelab-toolchain/debian-initial-setup/raw/refs/heads/main/debian-initial-setup.sh | bash -s setTimeZone=Europe/Amsterdam installDocker disableIPv6
